@@ -36,9 +36,8 @@ j = "تعذر الوصول إلى الكاميرا"
 reshaped_text = arabic_reshaper.reshape(j)
 bidi_j = get_display(reshaped_text)
 
-# القاموس
 thisdict = {
-    "أ": path + 'a.jpg',
+    "أ": path + 'a.jpg', ##  File name in the desktop
     "ط": path + 'zz.jpg',
     "ظ": path + 'xx.jpg',
     "و": path + 'w.jpg',
@@ -74,7 +73,6 @@ thisdict = {
     "ؤ": path + 'ppp.jpg',
 }
 
-# دالة للحصول على اسم الملف التالي المتاح
 def get_next_filename(base_filename, save_path):
     i = 1
     while True:
@@ -117,7 +115,7 @@ while True:
 
     key = cv2.waitKey(0) & 0xFF
 
-    if key == 27:  # مفتاح الهروب للخروج
+    if key == 27:  
         break
     
     if key == ord('v'):
@@ -137,17 +135,16 @@ while True:
                 print(bidi_j)
                 break
             
-            out.write(img)  # كتابة الإطار في ملف الفيديو
+            out.write(img)  
             
-            # تغيير أبعاد الفيديو
             resized_frame = cv2.resize(img, (800, 600))
             cv2.imshow('Video', resized_frame)
             
-            if cv2.waitKey(20) & 0xFF == 27:  # اضغط على ESC للخروج
+            if cv2.waitKey(20) & 0xFF == 27:  
                 break
 
         cap.release()
-        out.release()  # حفظ ملف الفيديو
+        out.release()  
         cv2.destroyAllWindows()
 
 cv2.destroyAllWindows()
